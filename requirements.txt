@@ -1,0 +1,7 @@
+openpyxl
+scipy
+pyxlsb
+xlsxwriter
+numpy
+xlwt
+xlrd
