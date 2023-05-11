@@ -178,14 +178,7 @@ if uploaded_file is not None:
 
         def DISPATCH_NEW(df):
             """Permet la création d'un DF dispatch qui facilite le tri par batterie de PAF"""
-            col = ['Local Date', 'Horaire théorique', 'Prov Dest', 'A/D', 'Libellé terminal',
-                    '2E_Arr',
-                    '2E_Dep',
-                    'S3 > F',
-                    'F > S3',
-                    'Galerie E > F',
-                    'Galerie F > E',
-                    'T1_Dep']
+            col = ['Local Date', 'Horaire théorique', 'Prov Dest', 'A/D', 'Libellé terminal'] + L_paf
 
             #                IMPLEMENTATION T1
 
