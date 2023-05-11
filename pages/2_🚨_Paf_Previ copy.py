@@ -46,7 +46,8 @@ if uploaded_file is not None:
             'S3 > F',
             'F > S3',
             'Galerie E > F',
-            'Galerie F > E']
+            'Galerie F > E',
+            'T1_Dep']
     
     table_faisceau_iata = pd.read_excel("table_faisceau_IATA (2).xlsx")
     table_faisceau_iata.rename(columns={"Code aéroport IATA":"Prov Dest"}, inplace=True)
@@ -259,7 +260,6 @@ if uploaded_file is not None:
 
         dispatch = DISPATCH_NEW(df_pgrm_dt)
 
-        st.write(dispatch)
         
         dispatch.to_excel("dispatch.xlsx", sheet_name="dispatch")
         
@@ -376,8 +376,6 @@ if uploaded_file is not None:
                 
         # Create a new dataframe from the list of duplicated rows
         new_df_A = pd.DataFrame(rows)
-
-        
 
         new_df_A['Local Date'] = new_df_A['new_datetime'].dt.date
         new_df_A['Horaire théorique'] = new_df_A['new_datetime'].dt.time
