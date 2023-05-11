@@ -61,7 +61,7 @@ if uploaded_file is not None:
         
     @st.cache(suppress_st_warning=True,allow_output_mutation=True)
     def COURBE_PRES(t):
-        df = pd.read_excel('courbes_presentation_V5.xlsx', t)
+        df = pd.read_excel('courbes_presentation_PAF.xlsx', t)
         return df   
    
     col1, col2 = st.columns(2)
