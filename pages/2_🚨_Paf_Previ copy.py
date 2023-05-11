@@ -184,7 +184,8 @@ if uploaded_file is not None:
                     'S3 > F',
                     'F > S3',
                     'Galerie E > F',
-                    'Galerie F > E']
+                    'Galerie F > E',
+                    'T1_Dep']
 
             #                IMPLEMENTATION T1
 
