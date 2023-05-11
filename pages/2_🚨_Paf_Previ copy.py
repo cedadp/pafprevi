@@ -47,7 +47,9 @@ if uploaded_file is not None:
             'F > S3',
             'Galerie E > F',
             'Galerie F > E',
-            'T1_Dep']
+            'T1_Dep',
+            'T3_Dep',
+            'BD_Dep']
     
     table_faisceau_iata = pd.read_excel("table_faisceau_IATA (2).xlsx")
     table_faisceau_iata.rename(columns={"Code aéroport IATA":"Prov Dest"}, inplace=True)
@@ -173,6 +175,14 @@ if uploaded_file is not None:
 
         df_pgrm_dt['Horaire théorique'] = pd.to_datetime(df_pgrm_dt['Horaire théorique'],format='%H:%M:%S')
         # df_pgrm_dt['Horaire théorique'] = df_pgrm_dt["Horaire théorique"].apply(lambda x: x.hour)
+        df_pgrm_dt = df_pgrm_dt.drop(df_pgrm_dt[(df_pgrm_dt['Faisceau géographique'] == 'Schengen') & (df_pgrm_dt['Libellé terminal'] == 'Terminal 3')].index)
+        df_pgrm_dt = df_pgrm_dt.drop(df_pgrm_dt[(df_pgrm_dt['Faisceau géographique'] == 'Métropole') & (df_pgrm_dt['Libellé terminal'] == 'Terminal 3')].index)
+        df_pgrm_dt = df_pgrm_dt.drop(df_pgrm_dt[(df_pgrm_dt['Faisceau géographique'] == 'Schengen') & (df_pgrm_dt['Libellé terminal'] == 'Terminal 2B')].index)
+        df_pgrm_dt = df_pgrm_dt.drop(df_pgrm_dt[(df_pgrm_dt['Faisceau géographique'] == 'Métropole') & (df_pgrm_dt['Libellé terminal'] == 'Terminal 2B')].index)
+        df_pgrm_dt = df_pgrm_dt.drop(df_pgrm_dt[(df_pgrm_dt['Faisceau géographique'] == 'Schengen') & (df_pgrm_dt['Libellé terminal'] == 'Terminal 2D')].index)
+        df_pgrm_dt = df_pgrm_dt.drop(df_pgrm_dt[(df_pgrm_dt['Faisceau géographique'] == 'Métropole') & (df_pgrm_dt['Libellé terminal'] == 'Terminal 2D')].index)
+               
+        
         df_pgrm_dt = df_pgrm_dt.drop_duplicates(subset=df_pgrm_dt.columns.difference(['Unnamed: 0']))
 
 
@@ -309,14 +319,6 @@ if uploaded_file is not None:
         # Create a list to store the duplicated rows
         rows = []
         L_A = [0, 0, 0.5, 0.5]
-        L_pif = ['2E_Dep',
-                 '2E_Arr',
-                 'S3 > F',
-                 'F > S3',
-                 'Galerie E > F',
-                 'Galerie F > E']
-
-
 
         # st.write(dispatch_paf_D)
         # dispatch_paf_D['Libellé terminal'].replace({"F":"C2F",
@@ -341,7 +343,7 @@ if uploaded_file is not None:
                 L = l_courbe_geo_t[new_row['Libellé terminal']][x][new_row['Plage']]               
                 # Subtract 10 minutes from the datetime column
                 new_row['new_datetime'] -= timedelta(minutes=10*i)
-                for pif in L_pif:
+                for pif in L_paf:
                     new_row[pif] = L[i]*new_row[pif]
                 
                 # Append the modified row to the list
@@ -361,7 +363,7 @@ if uploaded_file is not None:
                 new_row = row1.copy()
                 # Subtract 10 minutes from the datetime column
                 new_row['new_datetime'] += timedelta(minutes=10*i)
-                for pif in L_pif:
+                for pif in L_paf:
                     new_row[pif] = L_A[i]*new_row[pif]
                 
                 # Append the modified row to the list
@@ -374,7 +376,7 @@ if uploaded_file is not None:
         new_df_A['Local Date'] = new_df_A['new_datetime'].dt.date
         new_df_A['Horaire théorique'] = new_df_A['new_datetime'].dt.time
 
-        df_final = pd.melt(new_df_A, id_vars=['new_datetime'], value_vars=L_pif)
+        df_final = pd.melt(new_df_A, id_vars=['new_datetime'], value_vars=L_paf)
 
         def ceil_dt(x):
             return x + (datetime.min - x) % timedelta(minutes=10)
