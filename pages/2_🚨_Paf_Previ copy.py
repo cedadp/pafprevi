@@ -39,20 +39,13 @@ if uploaded_file is not None:
     def get_pif_in_fichier_config(pif):
         return pd.read_excel("fichier_config_PAF.xlsx", sheet_name=pif)
 
-    # a définir en fonction du fichier de congig
+    @st.cache(suppress_st_warning=True,allow_output_mutation=True)
+    def get_paf():
+        df = pd.read_excel("fichier_config_PAF.xlsx", sheet_name="Config")
+        df = df.fillna("XXXXX")
+        return list(df['PAF'])
 
-    L_paf = ['2E_Arr',
-            '2E_Dep',
-            'S3 > F',
-            'F > S3',
-            'Galerie E > F',
-            'Galerie F > E',
-            'T1_Dep',
-            'T1_Arr',
-            'T3_Dep',
-            'T3_Arr',
-            'BD_Dep',
-            'BD_Arr']
+    L_paf = get_paf()
     
     L_paf_HUB = ['2E_Arr',
             '2E_Dep',
