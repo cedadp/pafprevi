@@ -48,8 +48,18 @@ if uploaded_file is not None:
             'Galerie E > F',
             'Galerie F > E',
             'T1_Dep',
+            'T1_Arr',
             'T3_Dep',
-            'BD_Dep']
+            'T3_Arr',
+            'BD_Dep',
+            'BD_Arr']
+    
+    L_paf_HUB = ['2E_Arr',
+            '2E_Dep',
+            'S3 > F',
+            'F > S3',
+            'Galerie E > F',
+            'Galerie F > E']
     
     table_faisceau_iata = pd.read_excel("table_faisceau_IATA (2).xlsx")
     table_faisceau_iata.rename(columns={"Code aéroport IATA":"Prov Dest"}, inplace=True)
@@ -226,11 +236,11 @@ if uploaded_file is not None:
                             # temp = temp.loc[(temp['Horaire théorique'] >= i) & (temp['Horaire théorique'] < n) ]['Pax CNT TOT']*x
                             temp = temp.loc[temp['Plage']== i]['Pax CNT TOT']*x
                         
-                            L_df += [temp]
+                            L_df += [temp]          
                 return reduce(lambda a, b: a.add(b, fill_value = 0),L_df)
 
 
-            def dispatch_term_D(terminal, AD, type_pax = 'PAX TOT'):                
+            def dispatch_term_D(terminal, AD, type_pax = 'PAX TOT'):
                 temp = df.loc[(df['A/D'] == AD) & (df['Libellé terminal'] == terminal)].copy()
                 return temp[type_pax]
 
@@ -242,12 +252,12 @@ if uploaded_file is not None:
 
                 
                 for index, row in df_config.iterrows():
-                    if row['Arr/Dep'] == 'D' or row['type_pax'] == 'Pax LOC TOT':
+                    if (row['type_pax'] == 'Pax LOC TOT') or (row['type_pax'] == 'PAX TOT'):
                         dispatch += [dispatch_term_D(row['terminal'], row['Arr/Dep'], row['type_pax'])]
+
                     else:
                         dispatch += [dispatch_term(row['terminal'], row['salle_apport'], row['salle_emport'], row['Arr/Dep'])]
 
-                       
                 dispatch_df[paf] = reduce(lambda a, b: a.add(b, fill_value = 0),
                                           dispatch)  
 
@@ -255,8 +265,7 @@ if uploaded_file is not None:
 
             dispatch_df['TOT_calcul'] = dispatch_df[L_paf].sum(axis=1)
 
-
-            for i in L_paf:
+            for i in L_paf_HUB:
                 dispatch_df[i] = dispatch_df[i] / dispatch_df['TOT_calcul']*dispatch_df['TOT_théorique']
 
             dispatch_df.fillna(0, inplace=True)
@@ -309,6 +318,7 @@ if uploaded_file is not None:
 
         dispatch_paf_D = dispatch_paf.copy()
         dispatch_paf_D = dispatch_paf_D[dispatch_paf_D["A/D"] == "D"]
+
         dispatch_paf_A = dispatch_paf.copy()
         dispatch_paf_A = dispatch_paf_A[dispatch_paf_A["A/D"] == "A"]
 
@@ -319,15 +329,6 @@ if uploaded_file is not None:
         # Create a list to store the duplicated rows
         rows = []
         L_A = [0, 0, 0.5, 0.5]
-
-        # st.write(dispatch_paf_D)
-        # dispatch_paf_D['Libellé terminal'].replace({"F":"C2F",
-        #                                             "G":"C2G",
-        #                                             "EM":"M CTR",
-        #                                             "EL":"L CTR",
-        #                                             "EK":"K CTR",},
-        #                                               inplace=True)
-        
         
         # DEPART
         # Loop through each row in the dataframe
