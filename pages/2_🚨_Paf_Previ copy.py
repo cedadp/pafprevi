@@ -42,7 +42,7 @@ if uploaded_file is not None:
     @st.cache(suppress_st_warning=True,allow_output_mutation=True)
     def get_paf():
         df = pd.read_excel("fichier_config_PAF.xlsx", sheet_name="Config")
-        df = df.fillna("XXXXX")
+        #df = df.fillna("XXXXX")
         return list(df['PAF'])
 
     L_paf = get_paf()
