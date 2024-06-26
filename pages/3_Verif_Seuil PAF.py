@@ -46,8 +46,8 @@ if uploaded_file is not None:
         with col2:    
              fin = st.date_input("Date de fin :", key=2)
     
-start_date = pd.to_datetime(debut)
-end_date = pd.to_datetime(fin)
+        start_date = pd.to_datetime(debut)
+        end_date = pd.to_datetime(fin)
 
 # filtre le df sur la semaine suivante entière
         
