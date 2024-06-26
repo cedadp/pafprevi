@@ -16,7 +16,7 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-st.title("🛂 PreviPAF")
+st.title("🛂 Paf Previ")
 st.subheader("Programme complet :")
 
 
