@@ -8,7 +8,7 @@ import openpyxl
 import numpy
 from datetime import datetime, timedelta
   
-st.set_page_config(page_title="PAF Prévi", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="PAF Previ", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -65,7 +65,7 @@ if uploaded_file is not None:
     
     # @st.cache(suppress_st_warning=True,allow_output_mutation=True)
     
-    
+    st.write(df_l_date)
     def COURBE_PRES(t):
         df = pd.read_excel('courbes_presentation_PAF.xlsx', t)
         return df   
