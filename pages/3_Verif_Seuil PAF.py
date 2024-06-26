@@ -39,12 +39,12 @@ if uploaded_file is not None:
         df_complet['charge'].fillna(0, inplace=True)
                    
         df = df_complet
-        st.write(jours.max())    
+        #st.write(jours.max())    
         col1, col2 = st.columns(2)
         with col1:
-             debut = st.date_input("Date de début :",min_value=jours.min(), key=10)
+             debut = st.date_input("Date de début :",min_value=pd.to_datetime(jours).min(), key=10)
         with col2:    
-             fin = st.date_input("Date de fin :",max_value=jours.max(), key=2)
+             fin = st.date_input("Date de fin :",max_value=pd.to_datetime(jours).max(), key=2)
     
         start_date = pd.to_datetime(debut)
         end_date = pd.to_datetime(fin)
