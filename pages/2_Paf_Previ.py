@@ -34,7 +34,7 @@ if uploaded_file is not None:
 
     l_date = pd.to_datetime(df_pgrm['Local Date'].unique().tolist()).date
     l_date = sorted(l_date)  #créer une list 
-
+    df_l_date = pd.to_datetime(l_date, format='%b_%d')
     #@st.cache(suppress_st_warning=True,allow_output_mutation=True)
         
     def get_paf_in_fichier_config(paf):
@@ -65,16 +65,16 @@ if uploaded_file is not None:
     
     # @st.cache(suppress_st_warning=True,allow_output_mutation=True)
     
-    
+    st.write(df_l_date)
     def COURBE_PRES(t):
         df = pd.read_excel('courbes_presentation_PAF.xlsx', t)
         return df   
    
     col1, col2 = st.columns(2)
     with col1:
-        debut = st.date_input("Date de début :", key=10)
+         debut = st.date_input("Date de début :",min_value=df_l_date.min(),max_value= df_l_date.max() , key=10)
     with col2:    
-        fin = st.date_input("Date de fin :", key=2)
+         fin = st.date_input("Date de fin :",value=debut,min_value=df_l_date.min(),max_value= df_l_date.max() , key=2) 
     
     start_date = pd.to_datetime(debut)
     end_date = pd.to_datetime(fin) 
