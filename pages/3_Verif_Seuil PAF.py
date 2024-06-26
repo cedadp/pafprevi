@@ -44,7 +44,7 @@ if uploaded_file is not None:
         with col1:
              debut = st.date_input("Date de début :",min_value=df['jour'].min(), key=10)
         with col2:    
-             fin = st.date_input("Date de fin :", key=2)
+             fin = st.date_input("Date de fin :",max_value=df['jour'].max(), key=2)
     
         start_date = pd.to_datetime(debut)
         end_date = pd.to_datetime(fin)
