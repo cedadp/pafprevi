@@ -8,7 +8,7 @@ import openpyxl
 import numpy
 from datetime import datetime, timedelta
   
-st.set_page_config(page_title="PAF Previ", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="PAF Prévi", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -16,7 +16,7 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-st.title("🛂 PAF Previ")
+st.title("🛂 PAF Prévi")
 st.subheader("Programme complet :")
 
 
