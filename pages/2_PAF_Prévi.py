@@ -8,7 +8,7 @@ import openpyxl
 import numpy
 from datetime import datetime, timedelta
   
-st.set_page_config(page_title="PAF Previ", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="PAF Prévi", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -65,7 +65,7 @@ if uploaded_file is not None:
     
     # @st.cache(suppress_st_warning=True,allow_output_mutation=True)
     
-    st.write(df_l_date)
+    
     def COURBE_PRES(t):
         df = pd.read_excel('courbes_presentation_PAF.xlsx', t)
         return df   
@@ -297,9 +297,9 @@ if uploaded_file is not None:
         
         
         my_bar2.progress(50)
-        # df_pgrm_dt.to_excel("C:/Users/demanet/Documents/pafprevi-main/df_pgrm_dt.xlsx", sheet_name="dispatch")
+        #df_pgrm_dt.to_excel("C:/Users/demanet/Documents/pafprevi-main/df_pgrm_dt.xlsx", sheet_name="dispatch")
         
-        # dispatch.to_excel("C:/Users/demanet/Documents/pafprevi-main/dispatch.xlsx", sheet_name="dispatch")
+        #dispatch.to_excel("C:/Users/demanet/Documents/pafprevi-main/dispatch.xlsx", sheet_name="dispatch")
  
         
 ## Créé un dictionnaire à partir de fichier courbes_presentation_PAF mais sous format de dictionnaire Terminal > Faisceau > Plage [t][i][j]       
