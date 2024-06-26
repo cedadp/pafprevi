@@ -6,7 +6,7 @@ from itertools import product
 import locale
 from datetime import datetime, timedelta
 
-st.set_page_config(page_title="Verif Seuil", page_icon="📊", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Verif Seuil PAF", page_icon="📊", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 hide_streamlit_style = """
             <style>
@@ -17,7 +17,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 
-st.title('📊 PAF - Charge horaire / seuil de saturation')
+st.title('📊 Verif Seuil PAF - Charge horaire ')
     
 uploaded_file = st.file_uploader("Selectionner un fichier", type=["xls", "xlsx"])
     
