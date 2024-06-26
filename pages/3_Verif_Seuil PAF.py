@@ -42,9 +42,9 @@ if uploaded_file is not None:
         st.write(pd.to_datetime(jours).max())
         col1, col2 = st.columns(2)
         with col1:
-             debut = st.date_input("Date de début :",min_value=pd.to_datetime(jours).min(), key=10)
+             debut = st.date_input("Date de début :",min_value=jours.min(),max_value=jours.max(), key=10)
         with col2:    
-             fin = st.date_input("Date de fin :",max_value=pd.to_datetime(jours).max(), key=2)
+             fin = st.date_input("Date de fin :",min_value=jours.min(),max_value=jours.max(), key=2)
     
         start_date = pd.to_datetime(debut)
         end_date = pd.to_datetime(fin)
