@@ -4,6 +4,7 @@ import plotly.express as px
 import altair as alt
 from itertools import product
 import locale
+from datetime import datetime, timedelta
 
 st.set_page_config(page_title="Verif Seuil", page_icon="📏", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
@@ -42,9 +43,9 @@ if uploaded_file is not None:
         st.write(pd.to_datetime(jours).max())
         col1, col2 = st.columns(2)
         with col1:
-             debut = st.date_input("Date de début :",min_value=jours.min(),max_value=jours.max(), key=10)
+             debut = st.date_input("Date de début :",min_value=jours.min(),max_value= jours.max() - timedelta(days=1), key=10)
         with col2:    
-             fin = st.date_input("Date de fin :",min_value=jours.min(),max_value=jours.max(), key=2)
+             fin = st.date_input("Date de fin :",min_value=jours.min(),max_value= jours.max() - timedelta(days=1), key=2) #-1 car il y a toujours quelques heures du début de la dernière journée (méthode à revoir)
     
         start_date = pd.to_datetime(debut)
         end_date = pd.to_datetime(fin)
