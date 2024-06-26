@@ -66,7 +66,7 @@ if uploaded_file is not None:
         df = df[(df['jour'] >= start_date)&(df['jour']<= end_date)]
         
         
-        if st.button('Créer Export PAF'):    
+        if st.button('Tracer flux PAF'):    
 
              
             df = df.sort_values(by=['site', 'jour', 'heure'])
