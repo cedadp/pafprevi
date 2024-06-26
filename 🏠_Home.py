@@ -1,16 +1,15 @@
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="OutilsPIF V2", page_icon="🏠", layout="centered", initial_sidebar_state="auto")
+st.set_page_config(page_title="PAF Prévi", page_icon="🏠", layout="centered", initial_sidebar_state="auto")
 
 
-st.title('OutilsPAF') 
+st.title('Prévision flux DPAF') 
 
-st.write("Cet outil sert à regrouper plusieurs actions effectués au sein de l'IngeX de CDGD.")
-st.write("Vous retrouverez ainsi :")
-st.markdown("Onglet **Concat** : Un outil de concaténation des programmes AF Skyteam et des programmes ADP.")
-st.markdown("Onglet **Paf Previ** : Un outil de prévisions des flux aux différents sites de PAF dans l'aéroport CDG.")
-st.markdown("Onglet **Export PIF** : Un outil de mise en forme des réalisés PAF.")
+
+st.markdown("Onglet **Concat** : Un outil de concaténation des programmes AF Skyteam et des programmes SariaP.")
+st.markdown("Onglet **Paf Prévi** : Un outil de prévisions des flux aux différents sites DPAF de l'aéroport CDG.")
+st.markdown("Onglet **Export PIF** : Un outil de mise en forme des prévisions des flux DPAF.")
 
 st.sidebar.info("Version : 1.0")
 
