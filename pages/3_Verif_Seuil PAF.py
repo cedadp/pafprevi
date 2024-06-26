@@ -39,17 +39,25 @@ if uploaded_file is not None:
         df_complet['charge'].fillna(0, inplace=True)
        
         df = df_complet
-
+            
+        col1, col2 = st.columns(2)
+            with col1:
+                    debut = st.date_input("Date de début :", key=10)
+            with col2:    
+                    fin = st.date_input("Date de fin :", key=2)
+    
+         start_date = pd.to_datetime(debut)
+         end_date = pd.to_datetime(fin) 
 
 # filtre le df sur la semaine suivante entière
         
-        jour_deb = df['jour'].min().weekday()
-        jour_a_ajouter = (7 - jour_deb) % 7
-        deb_semaine_deux= df['jour'].min() + pd.Timedelta(days=jour_a_ajouter)
+        #jour_deb = df['jour'].min().weekday()
+        #jour_a_ajouter = (7 - jour_deb) % 7
+        #deb_semaine_deux= df['jour'].min() + pd.Timedelta(days=jour_a_ajouter)
         
-        fin_semaine_deux = deb_semaine_deux+ pd.Timedelta(days=6)
+        #fin_semaine_deux = deb_semaine_deux+ pd.Timedelta(days=6)
         
-        df = df[(df['jour'] >= deb_semaine_deux)&(df['jour']<= fin_semaine_deux)]
+        df = df[(df['jour'] >= start_date)&(df['jour']<= end_date)]
         
       
         df['jour']= pd.to_datetime(df['jour'])
