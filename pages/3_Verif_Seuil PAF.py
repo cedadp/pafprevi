@@ -57,7 +57,7 @@ if uploaded_file is not None:
         
         #fin_semaine_deux = deb_semaine_deux+ pd.Timedelta(days=6)
         
-        if st.button('Créer Export PAF'):    
+        #if st.button('Créer Export PAF'):    
 
         df['jour']= pd.to_datetime(df['jour'])
         df = df[(df['jour'] >= start_date)&(df['jour']<= end_date)]
