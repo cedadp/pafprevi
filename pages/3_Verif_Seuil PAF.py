@@ -38,11 +38,12 @@ if uploaded_file is not None:
        
         df_complet =pd.merge(df, combinaisons, on = ['jour', 'heure','site'], how = "right")
         df_complet['charge'].fillna(0, inplace=True)
-
-            
-            
+                   
         df = df_complet
-        #st.write(pd.to_datetime(jours).max())
+
+# afficher des calendrier pour selectionner une date de début et une date de fin d'analyse
+        #st.write(jours.max() - timedelta(days=1))
+
         col1, col2 = st.columns(2)
         with col1:
              debut = st.date_input("Date de début :",min_value=jours.min(),max_value= jours.max() - timedelta(days=1), key=10)
@@ -106,8 +107,12 @@ if uploaded_file is not None:
             df_config = df_config.drop(columns=['charge'])
             
                       
-            custom_dict = {'K CTRCNT' : 0,'K CTR' : 1,'K CNT' : 2 , 'L CTR' : 3, 'L CNT' : 4, 'M CTR' : 5, 'Galerie EF' : 6, 'C2F' : 7, 'C2G' : 8, 'Liaison AC' : 9,'Liaison BD' : 10,
-            'T3': 11, 'Terminal 1' : 12, 'Terminal 1_5' : 13, 'Terminal 1_6' : 14}
+            #custom_dict = {'K CTRCNT' : 0,'K CTR' : 1,'K CNT' : 2 , 'L CTR' : 3, 'L CNT' : 4, 'M CTR' : 5, 'Galerie EF' : 6, 'C2F' : 7, 'C2G' : 8, 'Liaison AC' : 9,'Liaison BD' : 10,
+            #'T3': 11, 'Terminal 1' : 12, 'Terminal 1_5' : 13, 'Terminal 1_6' : 14}
+            
+            custom_dict = {'2E_Arr':0,'2E_Dep':1,'S3 > F':2,'F > S3':3,'Galerie E > F':4,'Galerie F > E':5,'BD_Arr':6,'BD_Dep':7,'T1_Arr':8,'T1_Dep':9,'T3_Arr':10,'T3_Dep':11,'AC_Arr':12,'AC_Dep':13}
+
+            
             
             df_config = df_config.sort_values(by=['site'], key=lambda x: x.map(custom_dict)).reset_index(drop=True)
         
@@ -123,9 +128,9 @@ if uploaded_file is not None:
             
             
             def seuil(site):
-                seuils = {'K CTRCNT' : 0,'K CTR' : 1600,'K CNT' : 300 , 'L CTR' : 2100, 'L CNT' :  1440, 'M CTR' : 1820, 'Galerie EF' : 1820, 'C2F' : 2180, 'C2G' : 910, 'Liaison AC' : 1960,'Liaison BD' : 2500,
-                'T3': 1260, 'Terminal 1' : 2280, 'Terminal 1_5' : 375, 'Terminal 1_6' : 500}
-            
+                #seuils = {'K CTRCNT' : 0,'K CTR' : 1600,'K CNT' : 300 , 'L CTR' : 2100, 'L CNT' :  1440, 'M CTR' : 1820, 'Galerie EF' : 1820, 'C2F' : 2180, 'C2G' : 910, 'Liaison AC' : 1960,'Liaison BD' : 2500,
+                #'T3': 1260, 'Terminal 1' : 2280, 'Terminal 1_5' : 375, 'Terminal 1_6' : 500}
+                seuils = {'2E_Arr':3600,'2E_Dep':3966,'S3 > F':968,'F > S3':2222,'Galerie E > F':2744,'Galerie F > E':1240,'BD_Arr':2276,'BD_Dep':1544,'T1_Arr':2664,'T1_Dep':2071,'T3_Arr':1180,'T3_Dep':1020,'AC_Arr':1780,'AC_Dep':1248}
             
                 return seuils.get(site,0)
             
