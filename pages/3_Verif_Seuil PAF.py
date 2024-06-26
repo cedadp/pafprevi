@@ -37,9 +37,9 @@ if uploaded_file is not None:
        
         df_complet =pd.merge(df, combinaisons, on = ['jour', 'heure','site'], how = "right")
         df_complet['charge'].fillna(0, inplace=True)
-       
+                   
         df = df_complet
-        #st.write(df['jour'])    
+        #st.write(jours)    
         col1, col2 = st.columns(2)
         with col1:
              debut = st.date_input("Date de début :",min_value=jours.min(), key=10)
