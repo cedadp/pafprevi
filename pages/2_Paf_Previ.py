@@ -65,7 +65,7 @@ if uploaded_file is not None:
     
     # @st.cache(suppress_st_warning=True,allow_output_mutation=True)
     
-    st.write(df_l_date)
+    
     def COURBE_PRES(t):
         df = pd.read_excel('courbes_presentation_PAF.xlsx', t)
         return df   
