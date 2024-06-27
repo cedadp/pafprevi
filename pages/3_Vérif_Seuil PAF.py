@@ -6,7 +6,7 @@ from itertools import product
 import locale
 from datetime import datetime, timedelta
 
-st.set_page_config(page_title="Vérif Seuil PAF", page_icon="📊", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Vérif Seuil PAF", page_icon="🛂", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 hide_streamlit_style = """
             <style>
