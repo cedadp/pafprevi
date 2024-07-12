@@ -8,8 +8,8 @@ st.title('Prévision flux DPAF')
 
 
 st.markdown("Onglet ** 📦 Concat** : Un outil de concaténation des programmes AF Skyteam et des programmes SariaP.")
-st.markdown("Onglet ** 🛂 Paf Prévis** : Un outil de prévisions des flux aux différents sites DPAF de l'aéroport CDG.")
-st.markdown("Onglet ** 📊 Vérif Seuil** : Un outil pour tracer le débit horaire des flux DPAF.")
+st.markdown("Onglet ** 🛂 PAF Prévis** : Un outil de prévisions des flux aux différents sites DPAF de l'aéroport CDG.")
+st.markdown("Onglet ** 📊 Vérif Seuil PAF** :  Un outil de visualisation des flux horaires aux différents sites DPAF dans l'aéroport CDG.")
 
 st.sidebar.info("Version : 1.0")
 
