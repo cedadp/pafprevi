@@ -7,4 +7,4 @@ xlwt
 xlrd
 plotly
 DateTime
-seaborn
+
