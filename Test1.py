@@ -50,3 +50,39 @@ if uploaded_file_realise is not None and uploaded_file_previsionnel is not None:
     plt.xlabel("Compagnie")
     plt.ylabel("Écart de Passagers")
     st.pyplot(plt)
+
+
+
+import plotly.express as px
+
+# Créer un graphique à boîtes à moustaches interactif avec Plotly
+fig = px.box(df_comparaison, 
+             x='code compagnie', 
+             y='taux_ecart_passagers', 
+             title='Distribution des écarts par compagnie',
+             labels={'code compagnie': 'Compagnie', 'taux_ecart_passagers': 'Taux d\'écart passagers (%)'})
+
+# Faire pivoter les étiquettes des compagnies à 90 degrés
+fig.update_layout(xaxis_tickangle=-90)
+
+# Centrer le graphique (si nécessaire, Plotly centre généralement bien)
+fig.update_layout(margin=dict(l=50, r=50, t=80, b=150))
+
+# Afficher le graphique interactif
+fig.show()
+
+
+# Graphique de distribution interactive
+fig = px.histogram(df_comparaison, 
+                   x='taux_ecart_passagers', 
+                   nbins=50,  # Nombre de barres
+                   title='Distribution des écarts passagers',
+                   labels={'taux_ecart_passagers': 'Taux d\'écart passagers (%)'},
+                   marginal='box')  # Ajouter un box plot en haut
+
+# Centrer le graphique
+fig.update_layout(margin=dict(l=50, r=50, t=80, b=80))
+
+# Afficher le graphique interactif
+fig.show()
+
