@@ -155,3 +155,5 @@ if uploaded_file is not None:
                 
                 
                 st.plotly_chart(fig)
+                # Sauvegarder le graphique en tant que fichier HTML
+                fig.write_html(f"{site}_graph.html")
